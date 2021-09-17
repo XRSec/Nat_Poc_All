@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  db:
+    image: mariadb
+    hostname: db
+    container_name: db
+    volumes:
+      - ./chevereto/db:/var/lib/mysql:rw
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: chevereto_root
+      MYSQL_DATABASE: chevereto
+      MYSQL_USER: chevereto
+      MYSQL_PASSWORD: chevereto
+
+  chevereto:
+    hostname: chevereto
+    container_name: chevereto
+    image: nmtan/chevereto
+    depends_on:
+      - db
+    restart: always
+    environment:
+      CHEVERETO_DB_HOST: db
+      CHEVERETO_DB_USERNAME: chevereto
+      CHEVERETO_DB_PASSWORD: chevereto
+      CHEVERETO_DB_NAME: chevereto
+      CHEVERETO_DB_PREFIX: chv_
+    volumes:
+      - ./chevereto/chevereto_images:/var/www/html/images:rw
+      - ./chevereto/conf.d:/usr/local/etc/php/conf.d:rw
+
+  hexo:
+    hostname: hexo
+    container_name: hexo
+    image: xrsec/hexo
+    restart: always
+    volumes:
+      - ./hexo:/www:rw
+
+  nginx:
+    hostname: nginx
+    container_name: nginx
+    image: nginx:latest
+    depends_on:
+      - chevereto
+      - hexo
+    restart: always
+    volumes:
+      - ./nginx:/etc/nginx/conf.d:rw
+    ports:
+      - 80:80
