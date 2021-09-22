@@ -5,33 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="275468b6-d62b-49e1-ac0d-a9360dd959bb" name="更改" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/chevereto_images/.htaccess" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/chevereto_images/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-exif.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-filesize.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-gd.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-mysqli.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-pdo_mysql.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-sodium.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/conf.d/docker-php-ext-zip.ini" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chevereto/db/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/_config.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/scaffolds/draft.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/scaffolds/embed.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/scaffolds/page.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/scaffolds/post.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/_posts/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/about/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/categories/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/robots.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/source/tags/index.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/themes/.gitkeep" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hexo/themes/Wikitten" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx/www.conf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/images/20210922113701.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/upload.gtpl" beforeDir="false" afterPath="$PROJECT_DIR$/upload.gtpl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +90,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

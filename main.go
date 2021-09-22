@@ -19,11 +19,13 @@ const imgUploadPath = "images"
 const imgUrl = "http://img.chion.tech/"
 
 func main() {
+	// routing
 	http.HandleFunc("/upload", uploadFileHandler())
 	fs := http.FileServer(http.Dir(imgUploadPath))
 	http.Handle("/", http.StripPrefix("/images", fs))
+	log.Print("Server started on localhost:8081")
 
-	log.Print("Server started on localhost:8081, use /upload for uploading files and /files/{fileName} for downloading")
+	//Port services
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
@@ -103,7 +105,11 @@ func uploadFileHandler() http.HandlerFunc {
 			renderError(w, "CANT_WRITE_FILE")
 			return
 		}
-		w.Write([]byte(imgUrl + fileName))
+		if strings.EqualFold(fileEndings[0], ".conf") {
+			w.Write([]byte("<b>File upload Successful! File：</b>" + imgUrl + fileName))
+		} else {
+			w.Write([]byte(imgUrl + fileName))
+		}
 	}
 }
 
