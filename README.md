@@ -146,19 +146,23 @@ if __name__ == '__main__':
 
 ### 图片
 
-- typora
-
-### 文件
+- `Typora`  **OR** 
 
 ```bash
-$ 脚本 Markdown路径
+$ curl localhost:8081/upload -X POST -F "uploadFile=@/Nat_Poc_All/upd/poc.png" -x "http://localhost:8080"
+
+# unix
+$ echo 'curl localhost:8081/upload -X POST -F "uploadFile=@/$@" -x "http://localhost:8080"' > natpoc && chmod +x natpoc && ./natpoc '/Nat_Poc_All/markdown/任务.md'
+# windows
+$ echo 'curl localhost:8081/upload -X POST -F "uploadFile=@/%*" -x "http://localhost:8080"' > natpoc && chmod +x natpoc && ./natpoc '/Nat_Poc_All/markdown/任务.md'
 ```
 
 ### 域名
 
 ```ini
-host img.chion.tech 虚拟机IP
-host poc.chion.tech 虚拟机IP
+# 待定
+img.chion.tech 虚拟机IP
+poc.chion.tech 虚拟机IP
 ```
 
 ## 同步
