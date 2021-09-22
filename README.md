@@ -1,31 +1,89 @@
+
+
+
+
+
+
 # POC 本地化
 
-## 安装
+前言：由于上一版本方案过于臃肿，所以决定重新整理，刚好最近golang挺火的，就当练个手
 
-### 命令
+## 架构
+
+web：hexo ( theme [Wikitten](https://github.com/zthxxx/hexo-theme-Wikitten))
+
+图床：图床与笔记同步整合
+
+```ini
+➜  Nat_Poc_All git:(main) ✗ tree -N
+.
+├── images ( 图像上传文件夹 )
+│   └── 20210922113701.png
+├── main.go ( 主程序 )
+├── markdown ( Markdown上传文件夹，同 hexo /hexo/source/_posts/ )
+│   └── 任务.md
+├── upd ( 临死文件夹 )
+│   ├── poc.png
+│   └── 任务.md
+├── upload.gtpl ( web页面渲染 )
+└── upload.py ( 上传测试脚本，内容需要修改 )
+
+3 directories, 7 files
+```
+
+
+
+## 需求
+
+### 添加信息
+
+> 当识别到文件后缀是.conf时自动在文件头部添加 [ title data tag ]等信息，文章尾部添加版权声明
+>
+> 由于网上poc很多，如不做细致的tag 区分，则可以把原作者附上，例如tag: peiqi
+>
+> 希望能够在保存新文件的时候将文件名中的特殊字符做处理，`space` 转化成 `_`， `<>` 转换成 `-` ，并且自动检测原文件内容是否包含 `title` `date` `tag` 关键字，以防冲突
+
+- Input 
 
 ```bash
-# 启动
-docker-compose -f /www/chevereto/docker-compose.yaml up
+#!/bin/zsh
 
-# 停止
-docker-compose -f /www/chevereto/docker-compose.yaml down
+posts="/markdown/"
+title=$(basename $1 .md)
+newdoc=$posts$title.md
+
+echo "---\ntitle: $title\ndate: $2 $3\ntag: \n---\n\n" >> $newdoc
+cat $1 >> $newdoc
+echo "\n> Poc++ has the right to modify and interpret this article.
+```
+- Output
+
+```ini
+if file == /xxxx/xxxx/test.md
+$1 == /xxxx/xxxx/test.md
+basename $1 .md == test
+newdoc=$posts$title.md == /markdown/test.md
 ```
 
 
 
-### 配置
+### 页面美化
 
-```
-host img.chion.tech 虚拟机IP
-host poc.chion.tech 虚拟机IP
-```
+> 虽然说所有的步骤可以直接通过请求解决，但是还是需要美化一下web上传页面，理论上同html css
 
 
 
-### 图片上传
+由于近期特别忙，所以兄弟们帮忙一起维护这个项目了
 
-> Typora & Python3
+祝大家早日建立属于自己的通用内网poc平台！
+
+### 图文上传
+
+Typora 是一个很好的写作平台，同时提供图片上传选项，所以图片上传是使用的 `python 脚本` 或者 `go 脚本`
+
+文件上传主要上传Markdown文件，总不可能每次都 `docker cp` 或者 `scp`  吧，再部属个 `FTP` 显示太臃肿，刚好主程序已经能够接收 `Markdown` 文件,所以只需要写一个上传文件的脚本
+
+so - 图文脚本合并，判断后缀是个不错的选择,这个脚本是 `v0.0.1` 的 `chevereto` 上传脚本，希望兄弟能改成`golang` 语言
 
 ```python
 #!/usr/bin/env python3
@@ -82,9 +140,27 @@ def upload_img():
 
 if __name__ == '__main__':
     upload_img()
-
 ```
 
+## 使用
 
+### 图片
 
->  声明：维护不易，请更新文章时向我发送（图片 数据库 文章）用以同步漏洞库
+- typora
+
+### 文件
+
+```bash
+$ 脚本 Markdown路径
+```
+
+### 域名
+
+```ini
+host img.chion.tech 虚拟机IP
+host poc.chion.tech 虚拟机IP
+```
+
+## 同步
+
+只需要将 `Markdown` 和图片一起打包就好了，图片使用的是时间戳，可以用 `vscode`  将 `Markdown` 中的图片链接提取并下载，其他的就不用改了
