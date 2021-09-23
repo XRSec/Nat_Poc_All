@@ -21,21 +21,21 @@ def ds_store(path):
 
 
 if __name__ == '__main__':
-    filepath = "/Users/xr/Downloads/PeiQi_Wiki/test/"
+    filepath = "/PeiQi_Wiki/test/"
     ds_store(filepath)
     g = os.walk(filepath)
     for path, dir_list, file_list in g:
         for file_name in file_list:
             if (".md" in os.path.join(path, file_name)) and ("README" not in os.path.join(path, file_name)) and ("peiqi.py" not in os.path.join(path, file_name)):
-                l1 = (os.path.join(path).replace("/Users/xr/Downloads/PeiQi_Wiki/test/", "")).split("/")
+                l1 = (os.path.join(path).replace("/PeiQi_Wiki/test/", "")).split("/")
                 categories1, categories2= l1[0],l1[1]
                 date = "---\ntitle: " + file_name.replace(".md","") + "\ndate: 2021-09-23 23:55:51\ntags: PeiQi文库\ncategories:\n - "+ categories1 + "\n - "+ categories2 +"\n---\n\n"
                 # print(date)
-                open("/Users/xr/Downloads/PeiQi_Wiki/test1/" + file_name, "w").close()
-                with open("/Users/xr/Downloads/PeiQi_Wiki/test1/" + file_name, "w") as hexo:
+                open("/PeiQi_Wiki/test1/" + file_name, "w").close()
+                with open("/PeiQi_Wiki/test1/" + file_name, "w") as hexo:
                     hexo.write(date + open(os.path.join(path, file_name),"r").read())
             if (".zip" in os.path.join(path, file_name)) or ("py" in os.path.join(path, file_name)):
-                copyfile(os.path.join(path, file_name), "/Users/xr/Downloads/PeiQi_Wiki/hexo/source/Poc/" + file_name)
+                copyfile(os.path.join(path, file_name), "/PeiQi_Wiki/hexo/source/Poc/" + file_name)
 ```
 
 ### Picture update address
@@ -71,7 +71,7 @@ def imgreplace(file, old_content, new_content):
 
 
 if __name__ == '__main__':
-    filepath = "/Users/xr/Downloads/PeiQi_Wiki/test1/"
+    filepath = "/PeiQi_Wiki/test1/"
     ds_store(filepath)
     file = os.listdir(filepath)
     for i in range(0, len(file)):
@@ -81,7 +81,7 @@ if __name__ == '__main__':
         for j in range(0, len(imgs)):
             if len(imgs) > 0:
                 new_name = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f") + "." + re.match(r"^[\s\S]*\.(jpg|png|webp|jpeg|gif)", imgs[j]).group(1)
-                newimg_path = "/Users/xr/Downloads/PeiQi_Wiki/hexo/source/img/" + new_name
+                newimg_path = "/PeiQi_Wiki/hexo/source/img/" + new_name
                 with open(newimg_path, "wb") as temp:
                     temp.write((requests.get(imgs[j], timeout=5, verify=False)).content)
                 newimg = "http://img.chion.tech/img/" + new_name

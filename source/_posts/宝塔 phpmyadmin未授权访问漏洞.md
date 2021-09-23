@@ -25,4 +25,4 @@ categories:
 
 访问 **http://xxx.xxx.xxx.xxx:888/pma** 即可
 
-!此处图片缺失[](./image/bt-1.png)
+![](/img/20210924031326660733.png)
