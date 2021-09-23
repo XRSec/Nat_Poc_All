@@ -1,1 +1,0 @@
-curl localhost:8081/upload -X POST -F "uploadFile=@/$@" -x "http://localhost:8080"

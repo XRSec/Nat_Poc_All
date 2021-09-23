@@ -1,39 +1,111 @@
+## PeiQi文库整理
+
+> Peggy 0720; 336 articles; 113 zip | py; 1164 image results
+
+### Markdown article first correction, classification optimization
+
+```python
+#!/usr/bin/env python3
+# _*_ coding: utf-8 _*_
+
+import os, re
+from shutil import copyfile
 
 
+def ds_store(path):
+    ds_store_file = path + ".DS_Store"
+    while os.path.exists(ds_store_file):
+        os.remove(ds_store_file)
+        print("delete .DS_Store")
+    return
 
 
-
-
-# POC 本地化
-
-前言：由于[上一版方案](https://github.com/XRSec/Nat_Poc_All/tree/v0.01)过于臃肿，所以决定重新整理，刚好最近golang挺火的，就当练个手
-
-## 架构
-
-web：hexo ( theme [Wikitten](https://github.com/zthxxx/hexo-theme-Wikitten))
-
-图床：图床与笔记同步整合
-
-```ini
-➜  Nat_Poc_All git:(main) ✗ tree -N
-.
-├── images ( 图像上传文件夹 )
-│   └── 20210922113701.png
-├── main.go ( 主程序 )
-├── markdown ( Markdown上传文件夹，同 hexo /hexo/source/_posts/ )
-│   └── 任务.md
-├── upd ( 临死文件夹 )
-│   ├── poc.png
-│   └── 任务.md
-├── upload.gtpl ( web页面渲染 )
-└── upload.py ( 上传测试脚本，内容需要修改 )
-
-3 directories, 7 files
+if __name__ == '__main__':
+    filepath = "/Users/xr/Downloads/PeiQi_Wiki/test/"
+    ds_store(filepath)
+    g = os.walk(filepath)
+    for path, dir_list, file_list in g:
+        for file_name in file_list:
+            if (".md" in os.path.join(path, file_name)) and ("README" not in os.path.join(path, file_name)) and ("peiqi.py" not in os.path.join(path, file_name)):
+                l1 = (os.path.join(path).replace("/Users/xr/Downloads/PeiQi_Wiki/test/", "")).split("/")
+                categories1, categories2= l1[0],l1[1]
+                date = "---\ntitle: " + file_name.replace(".md","") + "\ndate: 2021-09-23 23:55:51\ntags: PeiQi文库\ncategories:\n - "+ categories1 + "\n - "+ categories2 +"\n---\n\n"
+                # print(date)
+                open("/Users/xr/Downloads/PeiQi_Wiki/test1/" + file_name, "w").close()
+                with open("/Users/xr/Downloads/PeiQi_Wiki/test1/" + file_name, "w") as hexo:
+                    hexo.write(date + open(os.path.join(path, file_name),"r").read())
+            if (".zip" in os.path.join(path, file_name)) or ("py" in os.path.join(path, file_name)):
+                copyfile(os.path.join(path, file_name), "/Users/xr/Downloads/PeiQi_Wiki/hexo/source/Poc/" + file_name)
 ```
 
+### Picture update address
+
+> First replace image link interference with `vscode`
+
+`Pycharm` was used to match 1061 undescribed images
+
+```python
+#!/usr/bin/env python3
+# _*_ coding: utf-8 _*_
+
+import os, re, datetime, sys, requests
+from shutil import copyfile
 
 
-## 需求
+def ds_store(path):
+    ds_store_file = path + ".DS_Store"
+    while os.path.exists(ds_store_file):
+        os.remove(ds_store_file)
+        print("delete .DS_Store")
+    return
+
+
+def imgreplace(file, old_content, new_content):
+    with open(file, encoding='UTF-8') as f:
+        content = f.read()
+        f.close()
+    content = content.replace(old_content, new_content)
+    with open(file, 'w', encoding='UTF-8') as f:
+        f.write(content)
+        f.close()
+
+
+if __name__ == '__main__':
+    filepath = "/Users/xr/Downloads/PeiQi_Wiki/test1/"
+    ds_store(filepath)
+    file = os.listdir(filepath)
+    for i in range(0, len(file)):
+        file_content = open(filepath + file[i], "r").read()
+        # imgs = re.findall('(/resource/(.*?).(png|jpg|jpeg|gif|webp))', file_content, re.S)
+        imgs = re.findall("(?:!\[*\]\((.*?)\))", file_content, re.S)
+        for j in range(0, len(imgs)):
+            if len(imgs) > 0:
+                new_name = datetime.datetime.now().strftime("%Y%m%d%H%M%S%f") + "." + re.match(r"^[\s\S]*\.(jpg|png|webp|jpeg|gif)", imgs[j]).group(1)
+                newimg_path = "/Users/xr/Downloads/PeiQi_Wiki/hexo/source/img/" + new_name
+                with open(newimg_path, "wb") as temp:
+                    temp.write((requests.get(imgs[j], timeout=5, verify=False)).content)
+                newimg = "http://img.chion.tech/img/" + new_name
+                mdpath = filepath + file[i]
+                print(imgs[j])
+                imgreplace(mdpath,imgs[j],newimg)
+                print("1")
+```
+
+Of course, there was a little hiccup, which took me an hour to fix
+
+So I will send out the `Hexo` version of `PeiQi Wiki` with images
+
+## Go程序新需求
+
+判断接收的是文件还是网址，如果是网址，则：
+
+- 自动下载
+- 判断文件类型
+- 自动重命名
+
+<hr>
+
+## 往期需求
 
 ### 添加信息
 
@@ -83,7 +155,7 @@ Typora 是一个很好的写作平台，同时提供图片上传选项，所以�
 
 文件上传主要上传Markdown文件，总不可能每次都 `docker cp` 或者 `scp`  吧，再部属个 `FTP` 显示太臃肿，刚好主程序已经能够接收 `Markdown` 文件,所以只需要写一个上传文件的脚本
 
-so - 图文脚本合并，判断后缀是个不错的选择,这个脚本是 `v0.0.1` 的 `chevereto` 上传脚本，希望兄弟能改成`golang` 语言
+so - 图文脚本合并，判断后缀是个不错的选择，下面这个脚本是 `v0.0.1` 的 `chevereto` 上传脚本，希望兄弟能改成`golang` 语言
 
 ```python
 #!/usr/bin/env python3
@@ -141,30 +213,3 @@ def upload_img():
 if __name__ == '__main__':
     upload_img()
 ```
-
-## 使用
-
-### 图片
-
-- `Typora`  **OR** 
-
-```bash
-$ curl localhost:8081/upload -X POST -F "uploadFile=@/Nat_Poc_All/upd/poc.png" -x "http://localhost:8080"
-
-# unix
-$ echo 'curl localhost:8081/upload -X POST -F "uploadFile=@/$@" -x "http://localhost:8080"' > natpoc && chmod +x natpoc && ./natpoc '/Nat_Poc_All/markdown/任务.md'
-# windows
-$ echo 'curl localhost:8081/upload -X POST -F "uploadFile=@/%*" -x "http://localhost:8080"' > natpoc && chmod +x natpoc && ./natpoc '/Nat_Poc_All/markdown/任务.md'
-```
-
-### 域名
-
-```ini
-# 待定
-img.chion.tech 虚拟机IP
-poc.chion.tech 虚拟机IP
-```
-
-## 同步
-
-只需要将 `Markdown` 和图片一起打包就好了，图片使用的是时间戳，可以用 `vscode`  将 `Markdown` 中的图片链接提取并下载，其他的就不用改了
