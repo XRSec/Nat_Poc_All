@@ -1,4 +1,4 @@
-# VERSION：HEXO + Wikitten + Go_UPDATE
+# VERSION：HEXO + Wikitten + Go_UPDATE DEV
 
 ## Poc 文章申请方式
 
