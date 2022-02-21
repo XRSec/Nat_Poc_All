@@ -1,4 +1,20 @@
-# POC 本地化
+# VERSION：HEXO + Wikitten + CHEVERETO MAIN
+
+## Poc 文章申请方式
+
+- 对本仓库的poc进行同步更新，保证poc更新的稳定性
+- issus 申请内测
+- 由于近期特别忙，所以兄弟们帮忙一起维护这个项目了
+- 祝大家早日建立属于自己的通用内网poc平台！
+- 希望兄弟们能为 dev 版本贡献一些代码
+
+## 预览
+
+![image-20220221234444368](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234444368.png)
+
+![image-20220221234545002](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234545002.png)
+
+![image-20220221234602514](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234602514.png)
 
 ## 安装
 
@@ -12,16 +28,12 @@ docker-compose -f /www/chevereto/docker-compose.yaml up
 docker-compose -f /www/chevereto/docker-compose.yaml down
 ```
 
-
-
 ### 配置
 
 ```
 host img.chion.tech 虚拟机IP
 host poc.chion.tech 虚拟机IP
 ```
-
-
 
 ### 图片上传
 
@@ -84,7 +96,5 @@ if __name__ == '__main__':
     upload_img()
 
 ```
-
-
 
 >  声明：维护不易，请更新文章时向我发送（图片 数据库 文章）用以同步漏洞库
