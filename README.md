@@ -18,7 +18,13 @@
 
 ## 部署架构
 
-
+```bash
+# 软链接 hexo/source/_posts Sercer/source/_posts
+# 软链接 hexo/source/img Sercer/source/img
+# 软链接 hexo/source/Poc Sercer/source/Poc
+# hexo ： hexo s -p1333
+# server : go run main.go
+```
 
 ## PeiQi文库整理记录
 
