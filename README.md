@@ -1,4 +1,4 @@
-# VERSION：HEXO + Wikitten + CHEVERETO MAIN
+## VERSION：HEXO + Wikitten + CHEVERETO MAIN
 
 ## Poc 文章申请方式
 
@@ -10,11 +10,11 @@
 
 ## 预览
 
-![image-20220221234444368](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234444368.png)
+![image-20220221234444368](https://dogefs.s3.ladydaily.com/ZYGG/storage/image-20220221234444368.png?fmt=webp&q=48)
 
-![image-20220221234545002](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234545002.png)
+![image-20220221234545002](https://dogefs.s3.ladydaily.com/ZYGG/storage/image-20220221234545002.png?fmt=webp&q=48)
 
-![image-20220221234602514](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234602514.png)
+![image-20220221234602514](https://dogefs.s3.ladydaily.com/ZYGG/storage/image-20220221234602514.png?fmt=webp&q=48)
 
 ## 安装
 
@@ -53,7 +53,7 @@ path_tmp = tempfile.gettempdir() + '/typora/'
 if not os.path.exists(path_tmp):
     os.makedirs(path_tmp)
 else:
-    shutil.rmtree(path_tmp)
+    shutil.dogefs.s3ree(path_tmp)
     os.mkdir(path_tmp)
 
 
