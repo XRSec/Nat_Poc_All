@@ -28,14 +28,15 @@
 import os, re
 from shutil import copyfile
 
+## Poc 文章申请方式
 
-def ds_store(path):
-    ds_store_file = path + ".DS_Store"
-    while os.path.exists(ds_store_file):
-        os.remove(ds_store_file)
-        print("delete .DS_Store")
-    return
+- 对本仓库的poc进行同步更新，保证poc更新的稳定性
+- issus 申请内测
+- 由于近期特别忙，所以兄弟们帮忙一起维护这个项目了
+- 祝大家早日建立属于自己的通用内网poc平台！
+- 希望兄弟们能为 [dev](https://github.com/XRSec/Nat_Poc_All/tree/dev) 版本贡献一些代码
 
+## 预览
 
 if __name__ == '__main__':
     filepath = "/PeiQi_Wiki/test/"
@@ -132,41 +133,26 @@ So I will send out the `Hexo` version of `PeiQi Wiki` with images
 >
 > 希望能够在保存新文件的时候将文件名中的特殊字符做处理，`space` 转化成 `_`， `<>` 转换成 `-` ，并且自动检测原文件内容是否包含 `title` `date` `tag` 关键字，以防冲突
 
-- Input 
+- Input
 
 ```bash
-#!/bin/zsh
+# 启动
+docker-compose -f /www/chevereto/docker-compose.yaml up
 
-posts="/markdown/"
-title=$(basename $1 .md)
-newdoc=$posts$title.md
-
-echo "---\ntitle: $title\ndate: $2 $3\ntag: \n---\n\n" >> $newdoc
-cat $1 >> $newdoc
-echo "\n> Poc++ has the right to modify and interpret this article.
+# 停止
+docker-compose -f /www/chevereto/docker-compose.yaml down
 ```
-- Output
+
+### 配置
 
 ```ini
-if file == /xxxx/xxxx/test.md
-$1 == /xxxx/xxxx/test.md
-basename $1 .md == test
-newdoc=$posts$title.md == /markdown/test.md
+host img.chion.tech 虚拟机IP
+host poc.chion.tech 虚拟机IP
 ```
 
+### 图片上传
 
-
-### 页面美化
-
-> 虽然说所有的步骤可以直接通过请求解决，但是还是需要美化一下web上传页面，理论上同html css
-
-### 图文上传
-
-Typora 是一个很好的写作平台，同时提供图片上传选项，所以图片上传是使用的 `python 脚本` 或者 `go 脚本`
-
-文件上传主要上传Markdown文件，总不可能每次都 `docker cp` 或者 `scp`  吧，再部属个 `FTP` 显示太臃肿，刚好主程序已经能够接收 `Markdown` 文件,所以只需要写一个上传文件的脚本
-
-so - 图文脚本合并，判断后缀是个不错的选择，下面这个脚本是 `v0.0.1` 的 `chevereto` 上传脚本，希望兄弟能改成`golang` 语言
+> Typora & Python3
 
 ```python
 #!/usr/bin/env python3
@@ -182,7 +168,7 @@ path_tmp = tempfile.gettempdir() + '/typora/'
 if not os.path.exists(path_tmp):
     os.makedirs(path_tmp)
 else:
-    shutil.rmtree(path_tmp)
+    shutil.dogefs.s3ree(path_tmp)
     os.mkdir(path_tmp)
 
 
@@ -223,4 +209,7 @@ def upload_img():
 
 if __name__ == '__main__':
     upload_img()
+
 ```
+
+> 声明：维护不易，请更新文章时向我发送（图片 数据库 文章）用以同步漏洞库
