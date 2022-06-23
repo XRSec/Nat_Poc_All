@@ -143,7 +143,7 @@ So I will send out the `Hexo` version of `PeiQi Wiki` with images
 >
 > 希望能够在保存新文件的时候将文件名中的特殊字符做处理，`space` 转化成 `_`， `<>` 转换成 `-` ，并且自动检测原文件内容是否包含 `title` `date` `tag` 关键字，以防冲突
 
-- Input 
+- Input
 
 ```bash
 #!/bin/zsh
@@ -156,6 +156,7 @@ echo "---\ntitle: $title\ndate: $2 $3\ntag: \n---\n\n" >> $newdoc
 cat $1 >> $newdoc
 echo "\n> Poc++ has the right to modify and interpret this article.
 ```
+
 - Output
 
 ```ini
@@ -164,8 +165,6 @@ $1 == /xxxx/xxxx/test.md
 basename $1 .md == test
 newdoc=$posts$title.md == /markdown/test.md
 ```
-
-
 
 ### 页面美化
 
