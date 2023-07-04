@@ -9,11 +9,11 @@
 
 ## 预览
 
-![image-20220221234444368](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234444368.png)
+![image-20220221234444368](https://xrsec.s3.bitiful.net/IMG/image-20220221234444368.png)
 
-![image-20220221234545002](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234545002.png)
+![image-20220221234545002](https://xrsec.s3.bitiful.net/IMG/image-20220221234545002.png)
 
-![image-20220221234602514](https://rmt.ladydaily.com/fetch/ZYGG/storage/image-20220221234602514.png)
+![image-20220221234602514](https://xrsec.s3.bitiful.net/IMG/image-20220221234602514.png)
 
 ## PeiQi文库整理记录
 
